@@ -16,7 +16,7 @@ namespace SwagLabs.Selenium
         /// <param name="element"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string GetText(this IWebElement element, string value)
+        public static string GetText(this IWebElement element)
         {
             return element.GetAttribute("value");
         }
@@ -26,7 +26,7 @@ namespace SwagLabs.Selenium
         /// <param name="element"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string GetDropDownText(this IWebElement element, string value)
+        public static string GetDropDownText(this IWebElement element)
         {
             return new SelectElement(element).AllSelectedOptions.SingleOrDefault().Text;
         }
