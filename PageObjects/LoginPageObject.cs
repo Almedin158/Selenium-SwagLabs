@@ -31,7 +31,7 @@ namespace SwagLabs.PageObjects
         public InventoryPageObject LogIn(string _username, string _password)
         {
             username.EnterText(_username);
-            Console.WriteLine(username.GetText());//Displays the typed in username in the console
+            Console.WriteLine(username.GetTextFromInput());//Displays the typed in username in the console
             password.EnterText(_password);
             login.ClickButton();
             return new InventoryPageObject(Selenium.Driver.current);
