@@ -13,72 +13,61 @@ namespace SwagLabs.TestCases
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
     [Parallelizable(ParallelScope.All)]
-    internal class LogInTestFirefox<TWebDriver> where TWebDriver:IWebDriver,new()
+    internal class LogInTest<TWebDriver> where TWebDriver:IWebDriver,new()
     {
         [SetUp]
         public void Initialize()
         {
             Selenium.Driver.Init(typeof(TWebDriver).Name);
             PageAssembly.Pages.Init();
-            Selenium.Driver.GoTo("www.saucedemo.com");
+            Selenium.Driver.GoTo(PageAssembly.Pages.Login._url);
         }
         [Test]
         public void StandardUserLogIn()
         {
-            PageObjects.LoginPageObject loginPage = new PageObjects.LoginPageObject(Selenium.Driver.current);
-            PageObjects.InventoryPageObject inventoryPage =  loginPage.LogIn("standard_user", "secret_sauce");
-            Assert.IsTrue(inventoryPage.menuButton.Displayed && inventoryPage.menuButton.Enabled);
-            //Console.WriteLine(inventoryPage.sauceLabsBackpack.GetAttribute("src"));
-            Assert.IsTrue(inventoryPage.sauceLabsBackpack.GetAttribute("src").EndsWith("/static/media/sauce-backpack-1200x1500.34e7aa42.jpg"));
+            PageAssembly.Pages.Login.LogIn("standard_user", "secret_sauce");
+            PageAssembly.Pages.MainPage.AssertLoggedInSuccesfully();
         }
         [Test]
         public void LockedOutUserLogIn()
         {
-            PageObjects.LoginPageObject loginPage = new PageObjects.LoginPageObject(Selenium.Driver.current);
-            PageObjects.InventoryPageObject inventoryPage = loginPage.LogIn("locked_out_user", "secret_sauce");
-            Assert.IsTrue(loginPage.errorButton.Text.Contains("Epic sadface: Sorry, this user has been locked out."));
+            PageAssembly.Pages.Login.LogIn("locked_out_user", "secret_sauce");
+            PageAssembly.Pages.Login.AssertLockedUserLogin();
         }
         [Test]
         public void ProblemUserLogIn()
         {
-            PageObjects.LoginPageObject loginPage = new PageObjects.LoginPageObject(Selenium.Driver.current);
-            PageObjects.InventoryPageObject inventoryPage = loginPage.LogIn("problem_user", "secret_sauce");
-            //Assert.IsTrue(inventoryPage.menuButton.Displayed && inventoryPage.menuButton.Enabled);
-            Console.WriteLine(inventoryPage.sauceLabsBackpack.GetAttribute("src"));
-            Assert.IsTrue(inventoryPage.sauceLabsBackpack.GetAttribute("src").EndsWith("/static/media/sauce-backpack-1200x1500.34e7aa42.jpg"));
+            PageAssembly.Pages.Login.LogIn("problem_user", "secret_sauce");
+            PageAssembly.Pages.MainPage.AssertMainPageConsistency();
 
         }
         [Test]
         public void PerformanceGlitchUserLogIn()
         {
-            PageObjects.LoginPageObject loginPage = new PageObjects.LoginPageObject(Selenium.Driver.current);
             Selenium.Driver.current.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(3);//Site must load within 3 seconds, else the test fails.
-            PageObjects.InventoryPageObject inventoryPage = loginPage.LogIn("performance_glitch_user", "secret_sauce");
-            Assert.IsTrue(inventoryPage.menuButton.Displayed && inventoryPage.menuButton.Enabled);
+            PageAssembly.Pages.Login.LogIn("performance_glitch_user", "secret_sauce");
+            PageAssembly.Pages.MainPage.AssertLoggedInSuccesfully();
         }
         //Login test without username
         [Test]
         public void MissingUsernameUserLogIn()
         {
-            PageObjects.LoginPageObject loginPage = new PageObjects.LoginPageObject(Selenium.Driver.current);
-            loginPage.LogIn("", "secret_sauce");
-            Assert.IsTrue(loginPage.errorButton.Text.Contains("Epic sadface: Username is required"));
+            PageAssembly.Pages.Login.LogIn("", "secret_sauce");
+            PageAssembly.Pages.Login.AssertBlankUserNameLogin();
         }
         //Login test without password
         [Test]
         public void MissingPasswordUserLogIn()
         {
-            PageObjects.LoginPageObject loginPage = new PageObjects.LoginPageObject(Selenium.Driver.current);
-            loginPage.LogIn("Almedin", "");
-            Assert.IsTrue(loginPage.errorButton.Text.Contains("Epic sadface: Password is required"));
+            PageAssembly.Pages.Login.LogIn("Almedin", "");
+            PageAssembly.Pages.Login.AssertBlankPasswordLogin();
         }
         //Login test with incorrect password and/or username
         [Test]
         public void IncorrectUsernameOrPasswordUserLogIn()
         {
-            PageObjects.LoginPageObject loginPage = new PageObjects.LoginPageObject(Selenium.Driver.current);
-            loginPage.LogIn("Almedin", "Password");
-            Assert.IsTrue(loginPage.errorButton.Text.Contains("Epic sadface: Username and password do not match any user in this service"));
+            PageAssembly.Pages.Login.LogIn("Almedin", "Password");
+            PageAssembly.Pages.Login.AssertIncorrectUserNameOrPasswordLogin();
         }
         [TearDown]
         public void CleanUp()

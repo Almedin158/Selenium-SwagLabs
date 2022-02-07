@@ -107,8 +107,8 @@ C:\Users\Almedin\Desktop\Selenium-SwagLabs\bin\Debug\SeleniumExtras.PageObjects.
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\bin\Debug\WebDriver.dll
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\bin\Debug\WebDriver.Support.dll
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\bin\Debug\nunit.framework.xml
-C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.csproj.AssemblyReference.cache
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.csproj.CoreCompileInputs.cache
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.csproj.CopyComplete
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.dll
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.pdb
+C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.csproj.AssemblyReference.cache

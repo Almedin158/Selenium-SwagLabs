@@ -6,19 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SwagLabs.PageObjects
+namespace SwagLabs.PageObjects.MainPage
 {
-    internal class InventoryPageObject
+    internal partial class MainPage
     {
-        public InventoryPageObject(IWebDriver driver)
-        {
-            PageFactory.InitElements(driver, this);
-        }
-
         [FindsBy(How = How.Id, Using = "react-burger-menu-btn")]
         public IWebElement menuButton { get; set; }
 
-        [FindsBy(How =How.CssSelector, Using = "#item_4_img_link > img:nth-child(1)")]
+        [FindsBy(How = How.CssSelector, Using = "#item_4_img_link > img:nth-child(1)")]
         public IWebElement sauceLabsBackpack { get; set; }
     }
 }

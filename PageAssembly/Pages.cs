@@ -10,14 +10,13 @@ namespace SwagLabs.PageAssembly
     internal class Pages
     {
         [ThreadStatic]
-        public static LoginPageObject loginPageObject;
+        public static PageObjects.LoginPage.LoginPage Login;
         [ThreadStatic]
-        public static InventoryPageObject inventoryPageObject;
-
+        public static PageObjects.MainPage.MainPage MainPage;
         public static void Init()
         {
-            loginPageObject = new LoginPageObject(Selenium.Driver.current);
-            inventoryPageObject = new InventoryPageObject(Selenium.Driver.current);
+            Login = new PageObjects.LoginPage.LoginPage(Selenium.Driver.current);
+            MainPage = new PageObjects.MainPage.MainPage(Selenium.Driver.current);
         }
     }
 }
