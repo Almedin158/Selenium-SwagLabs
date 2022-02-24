@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace SwagLabs.Selenium
     {
         [ThreadStatic]
         public static IWebDriver driver;
+        public static WebDriverWait webDriverWait;
 
         public static void Init(string _webDriverName)
         {
@@ -36,6 +39,16 @@ namespace SwagLabs.Selenium
                 _url = $"http://{_url}";
             }
             current.Navigate().GoToUrl(_url);
+        }
+
+        public static void SwitchWindowHandles(int _tabPosition)
+        {
+            driver.SwitchTo().Window(driver.WindowHandles[_tabPosition]);
+        }
+        public static void ExplicitWaitUrlMatch(int _timeSpan, string _url)
+        {
+            webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(_timeSpan));
+            webDriverWait.Until(ExpectedConditions.UrlMatches(_url));
         }
     }
 }

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace SwagLabs.TestCases
 {
+    [Parallelizable(ParallelScope.All)]
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    [Parallelizable(ParallelScope.All)]
     internal class LogInTest<TWebDriver> where TWebDriver:IWebDriver,new()
     {
         [SetUp]

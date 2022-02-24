@@ -15,5 +15,14 @@ namespace SwagLabs.PageObjects.MainPage
 
         [FindsBy(How = How.CssSelector, Using = "#item_4_img_link > img:nth-child(1)")]
         public IWebElement sauceLabsBackpack { get; set; }
+
+        [FindsBy(How=How.CssSelector, Using = ".social_twitter > a:nth-child(1)")]
+        public IWebElement twitterButton { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".social_facebook > a:nth-child(1)")]
+        public IWebElement facebookButton { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".social_linkedin > a:nth-child(1)")]
+        public IWebElement linkedInButton { get; set; }
     }
 }

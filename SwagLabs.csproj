@@ -41,6 +41,9 @@
     <Reference Include="SeleniumExtras.PageObjects, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DotNetSeleniumExtras.PageObjects.Core.4.0.1\lib\net46\SeleniumExtras.PageObjects.dll</HintPath>
     </Reference>
+    <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -77,6 +80,7 @@
     <Compile Include="Selenium\GetMethods.cs" />
     <Compile Include="Selenium\SetMethods.cs" />
     <Compile Include="TestCases\LogInTest.cs" />
+    <Compile Include="TestCases\SocialMediaRedirectionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

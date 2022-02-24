@@ -112,3 +112,4 @@ C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.csproj.CopyComplet
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.dll
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.pdb
 C:\Users\Almedin\Desktop\Selenium-SwagLabs\obj\Debug\SwagLabs.csproj.AssemblyReference.cache
+C:\Users\Almedin\Desktop\Selenium-SwagLabs\bin\Debug\SeleniumExtras.WaitHelpers.dll
