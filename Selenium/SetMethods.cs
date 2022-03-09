@@ -40,9 +40,13 @@ namespace SwagLabs.Selenium
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SelectDrowDown(this IWebElement element, string value)
+        public static void SelectDrowDownByText(this IWebElement element, string value)
         {
             new SelectElement(element).SelectByText(value);
+        }
+        public static void SelectDrowDownByValue(this IWebElement element, string value)
+        {
+            new SelectElement(element).SelectByValue(value);
         }
     }
 }

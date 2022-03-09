@@ -24,5 +24,8 @@ namespace SwagLabs.PageObjects.MainPage
 
         [FindsBy(How = How.CssSelector, Using = ".social_linkedin > a:nth-child(1)")]
         public IWebElement linkedInButton { get; set; }
+
+        [FindsBy(How =How.CssSelector, Using= ".product_sort_container")]
+        public IWebElement sortDropDownButton { get; set; }
     }
 }
