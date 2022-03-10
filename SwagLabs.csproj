@@ -80,6 +80,7 @@
     <Compile Include="Selenium\GetMethods.cs" />
     <Compile Include="Selenium\SetMethods.cs" />
     <Compile Include="TestCases\LogInTest.cs" />
+    <Compile Include="TestCases\SidebarTest.cs" />
     <Compile Include="TestCases\SocialMediaRedirectionTest.cs" />
     <Compile Include="TestCases\SortProductsTest.cs" />
   </ItemGroup>

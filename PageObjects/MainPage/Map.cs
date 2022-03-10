@@ -27,5 +27,11 @@ namespace SwagLabs.PageObjects.MainPage
 
         [FindsBy(How =How.CssSelector, Using= ".product_sort_container")]
         public IWebElement sortDropDownButton { get; set; }
+
+        [FindsBy(How =How.Id , Using = "react-burger-menu-btn")]
+        public IWebElement sidebarOpenButton { get; set; }
+
+        [FindsBy(How =How.Id, Using = "react-burger-cross-btn")]
+        public IWebElement sidebarCloseButton { get; set; }
     }
 }
