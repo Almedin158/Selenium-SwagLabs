@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using SwagLabs.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,8 @@ namespace SwagLabs.TestCases
     [Parallelizable(ParallelScope.All)]
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    internal class SortProductsTest<TWebDriver> where TWebDriver : IWebDriver, new()
+    internal class SortProductsTest<TWebDriver> : Selenium.BaseTest<TWebDriver> where TWebDriver : IWebDriver, new()
     {
-        [SetUp]
-        public void Initialize()
-        {
-            Selenium.Driver.Init(typeof(TWebDriver).Name);
-            PageAssembly.Pages.Init();
-            Selenium.Driver.GoTo(PageAssembly.Pages.Login._url);
-        }
         [Test]
         public void SortNameAscending()
         {
@@ -34,7 +28,9 @@ namespace SwagLabs.TestCases
                 productPrices.Add(product.Text);
             }
             productPrices.Sort();
-            Selenium.SetMethods.SelectDrowDownByValue(PageAssembly.Pages.MainPage.sortDropDownButton, "az");
+
+            PageAssembly.Pages.MainPage.sortDropDownButton.SelectDropDownByValue("az");
+
             products = Selenium.Driver.driver.FindElements(By.ClassName("inventory_item_name"));
             foreach (var product in products)
             {
@@ -55,7 +51,7 @@ namespace SwagLabs.TestCases
             }
             productPrices.Sort();
             productPrices.Reverse();
-            Selenium.SetMethods.SelectDrowDownByValue(PageAssembly.Pages.MainPage.sortDropDownButton, "az");
+            PageAssembly.Pages.MainPage.sortDropDownButton.SelectDropDownByValue("za");
             products = Selenium.Driver.driver.FindElements(By.ClassName("inventory_item_name"));
             foreach (var product in products)
             {
@@ -75,7 +71,7 @@ namespace SwagLabs.TestCases
                 productPrices.Add(Convert.ToDouble(product.Text.Trim('$')));
             }
             productPrices.Sort();
-            Selenium.SetMethods.SelectDrowDownByValue(PageAssembly.Pages.MainPage.sortDropDownButton, "lohi");
+            PageAssembly.Pages.MainPage.sortDropDownButton.SelectDropDownByValue("lohi");
             products = Selenium.Driver.driver.FindElements(By.ClassName("inventory_item_price"));
             foreach (var product in products)
             {
@@ -96,18 +92,16 @@ namespace SwagLabs.TestCases
             }
             productPrices.Sort();
             productPrices.Reverse();
-            Selenium.SetMethods.SelectDrowDownByValue(PageAssembly.Pages.MainPage.sortDropDownButton, "hilo");
+            PageAssembly.Pages.MainPage.sortDropDownButton.SelectDropDownByValue("hilo");
+
+
+
             products = Selenium.Driver.driver.FindElements(By.ClassName("inventory_item_price"));
             foreach (var product in products)
             {
                 productPricesSorted.Add(Convert.ToDouble(product.Text.Trim('$')));
             }
             Assert.IsTrue(productPrices.SequenceEqual(productPricesSorted));
-        }
-        [TearDown]
-        public void CleanUp()
-        {
-            Selenium.Driver.current.Quit();
         }
     }
 }

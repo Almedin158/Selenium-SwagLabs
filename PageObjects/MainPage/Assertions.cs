@@ -29,5 +29,13 @@ namespace SwagLabs.PageObjects.MainPage
         {
             Assert.IsTrue("https://www.linkedin.com/company/sauce-labs/"== Selenium.Driver.driver.Url);
         }
+        public void AssertLogout()
+        {
+            Assert.IsTrue("https://www.saucedemo.com/" == Selenium.Driver.driver.Url);
+        }
+        public void AssertAboutPageRedirection()
+        {
+            Assert.IsTrue("https://saucelabs.com/" == Selenium.Driver.driver.Url);
+        }
     }
 }

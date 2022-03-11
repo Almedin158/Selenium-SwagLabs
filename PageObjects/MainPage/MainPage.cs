@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using SwagLabs.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,18 @@ namespace SwagLabs.PageObjects.MainPage
         }
         public void ClickTwitterButton()
         {
-            Selenium.SetMethods.ClickButton(twitterButton);
+            PageAssembly.Pages.MainPage.twitterButton.ClickButton();
             //return new InventoryPageObject(Selenium.Driver.current);
         }
         public void ClickFacebookButton()
         {
-            Selenium.SetMethods.ClickButton(facebookButton);
+            PageAssembly.Pages.MainPage.facebookButton.ClickButton();
             //return new InventoryPageObject(Selenium.Driver.current);
         }
         public void ClickLinkedInButton()
         {
-            Selenium.SetMethods.ClickButton(linkedInButton);
+            //Selenium.SetMethods.ClickButton(linkedInButton);
+            PageAssembly.Pages.MainPage.linkedInButton.ClickButton();
             //return new InventoryPageObject(Selenium.Driver.current);
         }
     }

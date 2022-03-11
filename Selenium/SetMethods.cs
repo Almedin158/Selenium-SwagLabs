@@ -19,10 +19,6 @@ namespace SwagLabs.Selenium
         {
             element.SendKeys(value);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="element"></param>
         public static void ClickButton(this IWebElement element)
         {
             element.Click();
@@ -40,11 +36,16 @@ namespace SwagLabs.Selenium
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SelectDrowDownByText(this IWebElement element, string value)
+        public static void SelectDropDownByText(this IWebElement element, string value)
         {
             new SelectElement(element).SelectByText(value);
         }
-        public static void SelectDrowDownByValue(this IWebElement element, string value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SelectDropDownByValue(this IWebElement element, string value)
         {
             new SelectElement(element).SelectByValue(value);
         }

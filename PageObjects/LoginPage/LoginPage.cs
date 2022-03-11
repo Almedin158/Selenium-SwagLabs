@@ -23,7 +23,6 @@ namespace SwagLabs.PageObjects.LoginPage
             username.EnterText(_username);
             password.EnterText(_password);
             login.ClickButton();
-            //return new InventoryPageObject(Selenium.Driver.current);
         }
     }
 }

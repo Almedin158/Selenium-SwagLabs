@@ -76,10 +76,11 @@
     <Compile Include="PageObjects\MainPage\MainPage.cs" />
     <Compile Include="PageObjects\MainPage\Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selenium\BaseTest.cs" />
     <Compile Include="Selenium\Driver.cs" />
     <Compile Include="Selenium\GetMethods.cs" />
     <Compile Include="Selenium\SetMethods.cs" />
-    <Compile Include="TestCases\LogInTest.cs" />
+    <Compile Include="TestCases\LoginTest.cs" />
     <Compile Include="TestCases\SidebarTest.cs" />
     <Compile Include="TestCases\SocialMediaRedirectionTest.cs" />
     <Compile Include="TestCases\SortProductsTest.cs" />

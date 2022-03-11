@@ -16,19 +16,12 @@ namespace SwagLabs.TestCases
     [Parallelizable(ParallelScope.All)]
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    internal class SocialMediaRedirectionTest<TWebDriver> where TWebDriver : IWebDriver, new()
+    internal class SocialMediaRedirectionTest<TWebDriver> : Selenium.BaseTest<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         string twitterUrl = "https://twitter.com/saucelabs";
         string facebookUrl = "https://www.facebook.com/saucelabs";
         string linkedInUrl = "https://www.linkedin.com/company/sauce-labs/";
 
-        [SetUp]
-        public void Initialize()
-        {
-            Selenium.Driver.Init(typeof(TWebDriver).Name);
-            PageAssembly.Pages.Init();
-            Selenium.Driver.GoTo(PageAssembly.Pages.Login._url);
-        }
         [Test]
         public void TwitterRedirection()
         {
@@ -58,11 +51,6 @@ namespace SwagLabs.TestCases
             Selenium.Driver.SwitchWindowHandles(1);
             Selenium.Driver.ExplicitWaitUrlMatch(3, linkedInUrl);
             PageAssembly.Pages.MainPage.AssertLinkedInRedirectionButton();
-        }
-        [TearDown]
-        public void CleanUp()
-        {
-            Selenium.Driver.current.Quit();
         }
     }
 }

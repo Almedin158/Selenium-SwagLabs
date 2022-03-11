@@ -33,5 +33,11 @@ namespace SwagLabs.PageObjects.MainPage
 
         [FindsBy(How =How.Id, Using = "react-burger-cross-btn")]
         public IWebElement sidebarCloseButton { get; set; }
+
+        [FindsBy(How =How.Id,Using = "logout_sidebar_link")]
+        public IWebElement logoutButton { get; set; }
+
+        [FindsBy(How=How.Id,Using = "about_sidebar_link")]
+        public IWebElement aboutButton { get; set; }
     }
 }

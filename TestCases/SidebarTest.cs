@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using SwagLabs.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,31 +14,41 @@ namespace SwagLabs.TestCases
     [Parallelizable(ParallelScope.All)]
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    internal class SidebarTest<TWebDriver> where TWebDriver : IWebDriver, new()
+    internal class SidebarTest<TWebDriver> : Selenium.BaseTest<TWebDriver> where TWebDriver : IWebDriver, new()
     {
-        [SetUp]
-        public void Initialize()
-        {
-            Selenium.Driver.Init(typeof(TWebDriver).Name);
-            PageAssembly.Pages.Init();
-            Selenium.Driver.GoTo(PageAssembly.Pages.Login._url);
-        }
+        public string loginUrl = "https://www.saucedemo.com/";
+        public string aboutUrl = "https://saucelabs.com/";
+
         [Test]
         public void OpenSidebar()
         {
             PageAssembly.Pages.Login.LogIn("standard_user", "secret_sauce");
-            Selenium.SetMethods.ClickButton(PageAssembly.Pages.MainPage.sidebarOpenButton);
+            PageAssembly.Pages.MainPage.sidebarOpenButton.ClickButton();
         }
+        [Test]
         public void CloseSidebar()
         {
             PageAssembly.Pages.Login.LogIn("standard_user", "secret_sauce");
-            Selenium.SetMethods.ClickButton(PageAssembly.Pages.MainPage.sidebarOpenButton);
-            Selenium.SetMethods.ClickButton(PageAssembly.Pages.MainPage.sidebarCloseButton);
+            PageAssembly.Pages.MainPage.sidebarOpenButton.ClickButton();
+            PageAssembly.Pages.MainPage.sidebarCloseButton.ClickButton();
         }
-        [TearDown]
-        public void CleanUp()
+        [Test]
+        public void LogOutTest()
         {
-            Selenium.Driver.current.Quit();
+            PageAssembly.Pages.Login.LogIn("standard_user", "secret_sauce");
+            PageAssembly.Pages.MainPage.sidebarOpenButton.ClickButton();
+            PageAssembly.Pages.MainPage.logoutButton.ClickButton();
+            Selenium.Driver.ExplicitWaitUrlMatch(3, loginUrl);
+            PageAssembly.Pages.MainPage.AssertLogout();
+        }
+        [Test]
+        public void AboutPageTest()
+        {
+            PageAssembly.Pages.Login.LogIn("standard_user", "secret_sauce");
+            PageAssembly.Pages.MainPage.sidebarOpenButton.ClickButton();
+            PageAssembly.Pages.MainPage.aboutButton.ClickButton();
+            Selenium.Driver.ExplicitWaitUrlMatch(3, aboutUrl);
+            PageAssembly.Pages.MainPage.AssertAboutPageRedirection();
         }
     }
 }

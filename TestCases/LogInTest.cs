@@ -13,15 +13,8 @@ namespace SwagLabs.TestCases
     [Parallelizable(ParallelScope.All)]
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    internal class LogInTest<TWebDriver> where TWebDriver:IWebDriver,new()
+    internal class LoginTest<TWebDriver>: Selenium.BaseTest<TWebDriver> where TWebDriver : IWebDriver, new()
     {
-        [SetUp]
-        public void Initialize()
-        {
-            Selenium.Driver.Init(typeof(TWebDriver).Name);
-            PageAssembly.Pages.Init();
-            Selenium.Driver.GoTo(PageAssembly.Pages.Login._url);
-        }
         [Test]
         public void StandardUserLogIn()
         {
@@ -68,11 +61,6 @@ namespace SwagLabs.TestCases
         {
             PageAssembly.Pages.Login.LogIn("Almedin", "Password");
             PageAssembly.Pages.Login.AssertIncorrectUserNameOrPasswordLogin();
-        }
-        [TearDown]
-        public void CleanUp()
-        {
-            Selenium.Driver.current.Quit();
         }
     }
 }
